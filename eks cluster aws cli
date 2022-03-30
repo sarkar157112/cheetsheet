@@ -1,0 +1,43 @@
+eks cluster setup 
+
+create iam role
+admin full access policy
+
+
+install eks 
+
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv /tmp/eksctl /usr/local/bin
+
+eks version
+------------------------------------------------------------------
+install kubectl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+sudo apt-get install kubectl -y 
+----------------------------------------------------------------------
+
+confugure aws cli 
+
+sudo apt install python3.6
+update-alternatives --install /usr/bin/python python /usr/bin/python3 10 ( for set python3 defalt)
+sudo apt-get update
+sudo apt-get install awscli
+aws --version
+
+---------------------------------------------------------------------------------
+aws configure
+access key @ secret password
+region
+---------------------------------------------------------------------------------
+
+setup eks cluster--
+
+eksctl create cluster \
+--name sark-eks \
+--region ap-south-1 \
+--version 1.21 \
+--nodegroup-name linnux-node \
+--node-type t2.micro \
+--nodes 1
+
